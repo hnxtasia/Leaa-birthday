@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Untuk Wanitaku ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffd6e7,#fff0f5);
+    font-family:Segoe UI,sans-serif;
+    overflow:hidden;
+}
+
+.card{
+    background:white;
+    width:500px;
+    max-width:90%;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
+    transition:all .5s ease;
+}
+
+h1{
+    color:#ff4f8b;
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:30px;
+}
+
+button{
+    background:#ff4f8b;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#message{
+    opacity:0;
+    transform:translateY(30px);
+    transition:all 1s ease;
+}
+
+.heart{
+    position:fixed;
+    top:-50px;
+    pointer-events:none;
+
+    animation:fall linear forwards;
+
+    filter:drop-shadow(0 0 10px #ff69b4);
+
+    z-index:9999;
+}
+
+@keyframes fall{
+
+    0%{
+        transform:
+        translateY(-50px)
+        rotate(0deg);
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translateY(110vh)
+        rotate(360deg);
+        opacity:0;
+    }
+
+}
+
+#profilePic{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:50%;
+    border:5px solid white;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+    margin-bottom:20px;
+}
+
+#gallery{
+
+    text-align:center;
+
+}
+
+#galleryImage{
+
+    width:500px;
+    max-width:90%;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+    margin-bottom:20px;
+
+    transition:0.3s;
+
+}
+
+#galleryCaption{
+
+    color:#555;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+}
+
+#heartTransition{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(255,240,245,0.95);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:200px;
+
+    z-index:99999;
+
+}
+
+.heartAnimation{
+
+    animation:heartBoom 2s ease forwards;
+
+}
+
+@keyframes heartBoom{
+
+    0%{
+        transform:scale(0);
+        opacity:0;
+    }
+
+    30%{
+        transform:scale(2);
+        opacity:1;
+    }
+
+    50%{
+        transform:scale(1);
+    }
+
+    70%{
+        transform:scale(1.4);
+    }
+
+    100%{
+        transform:scale(12);
+        opacity:0;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  window.addEventListener("click", () => {
+    document.getElementById("bgm").play();
+  });
+</script>
+
+<div class="card">
+
+<img id="profilePic" src="images/leaa1.jpg" alt="Leaa">
+
+    <h1>For My Leaa ❤️</h1>
+
+    <p class="subtitle">
+        Sebuah hadiah kecil dari Jayy
+    </p>
+
+<button id="openBtn" onclick="showMessage()">
+    Buka Pesan 💌
+</button>
+
+<div id="message" style="display:none;margin-top:30px;">
+
+    <h2>Happy Birthday Leaa ❤️</h2>
+
+    <p style="margin-top:15px;line-height:1.8;color:#555;">
+
+        Hari ini adalah hari yang spesial karena memperingati
+        lahirnya manusia yang ku cintai. <3
+
+        <br><br>
+
+        Terima kasih karena sudah menerima hadiah ini. >w<
+        
+
+        <br><br>
+
+        Bahagia selalu sayangku. ❤️
+
+    </p>
+
+</div>
+
+<button id="galleryBtn"
+onclick="openGallery()"
+style="display:none;margin-top:20px;">
+
+📸 Klik untuk melihat sesuatu 
+
+</button>
+</div>
+<script>
+
+function createHeart(){
+
+    const heart =
+    document.createElement("div");
+
+    heart.classList.add("heart");
+
+    const hearts = [
+        "❤️",
+        "💖",
+        "💕",
+        "💗",
+        "💘",
+        "💝"
+    ];
+
+    heart.innerHTML =
+    hearts[Math.floor(Math.random()*hearts.length)];
+
+    heart.style.left =
+    Math.random()*100 + "vw";
+
+    heart.style.fontSize =
+    (Math.random()*25 + 15) + "px";
+
+    heart.style.animationDuration =
+    (Math.random()*4 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },7000);
+
+}
+
+function showMessage(){
+
+    let msg =
+    document.getElementById("message");
+
+    msg.style.display = "block";
+
+    setTimeout(() => {
+
+        msg.style.opacity = "1";
+        msg.style.transform = "translateY(0)";
+
+    },100);
+
+    document.querySelector(".card")
+    .style.transform = "scale(1.05)";
+
+    document.getElementById("openBtn").style.display = "none";
+    document.getElementById("galleryBtn").style.display = "inline-block";
+
+    heartRain = setInterval(createHeart,300);
+
+}
+
+</script>
+<div id="gallery"
+style="display:none;">
+
+    <img id="galleryImage"
+    src="images/leaa2.jpg">
+
+    <p id="galleryCaption">
+
+        Lihat dia, tetaplah berekspresi sesukamu, cantik.
+        Tersenyumlah ketika kamu bahagia, cemberutlah ketika kamu kesal.
+        karena setiap bahagiamu selalu menjadi bahagiaku juga, saat sedang kesal?
+        aku menyukainya juga, apapun itu tentangmu.
+
+    </p>
+
+    <br>
+
+    <button onclick="prevPhoto()">
+         Back
+    </button>
+
+    <button onclick="nextPhoto()">
+        Next 
+    </button>
+
+</div>
+<script>
+
+const galleryPhotos = [
+
+    "images/leaa2.jpg",
+    "images/leaa3.jpg",
+    "images/leaa4.jpg",
+    "images/leaa5.jpg",
+    "images/leaa6.jpg"
+
+];
+
+const galleryCaptions = [
+
+    "Lihat dia, tetaplah berekspresi sesukamu, cantik. Tersenyumlah ketika kamu bahagia, cemberutlah ketika kamu kesal. Karena setiap bahagiamu selalu menjadi bahagiaku juga, saat sedang kesal? Aku menyukainya juga, apapun itu tentangmu.",
+
+    "Leaa lembut orangnya, dia juga penyayang. Seperti warna pink yang dia suka. Lihat saja foto nya kalau ga percaya _-",
+
+    "Leaa rambutnya pendek, short hair n glasses. 1 kata untuk mewakikilinya, Cantik, lihat fotonya yang tengil itu >w<",
+
+    "Masyaallah calon istri nya jayy, jayy beruntung banget, jayy selalu bahagia setiap melihat Leaa. Tapi siapa sangka Leaa sudah 19 tahun, lihat foto itu.. bocilnya jay itu <3",
+
+    "Terimakasih sudah hadir di duina ini baby, aku sangat bahagia denganmu, aku sangat bangga padamu. I love u forever my leaa ❤️"
+
+];
+
+let galleryIndex = 0;
+
+function openGallery(){
+
+    document.querySelector(".card")
+    .style.display = "none";
+
+    document.getElementById("gallery")
+    .style.display = "block";
+
+    updateGallery();
+
+}
+
+function updateGallery(){
+
+    const img =
+    document.getElementById("galleryImage");
+
+    img.style.opacity = "0";
+
+    setTimeout(() => {
+
+        img.src = galleryPhotos[galleryIndex];
+
+        document.getElementById("galleryCaption")
+        .innerText =
+        galleryCaptions[galleryIndex];
+
+        img.style.opacity = "1";
+
+    },300);
+
+}
+
+function nextPhoto(){
+
+    galleryIndex++;
+
+    if(galleryIndex >= galleryPhotos.length){
+
+        document.getElementById("gallery")
+        .style.display = "none";
+
+        showEndingAnimation();
+
+        return;
+
+    }
+
+    updateGallery();
+
+}
+
+function prevPhoto(){
+
+    if(galleryIndex === 0){
+
+        document.getElementById("gallery")
+        .style.display = "none";
+
+        document.querySelector(".card")
+        .style.display = "block";
+
+        return;
+    }
+
+    galleryIndex--;
+
+    updateGallery();
+
+}
+
+function showEndingAnimation(){
+
+    const heart =
+    document.getElementById("heartTransition");
+
+    heart.style.display = "flex";
+
+    heart.classList.add("heartAnimation");
+
+    setTimeout(()=>{
+
+        heart.style.display = "none";
+
+        document.getElementById("ending")
+        .style.display = "block";
+
+    },2000);
+
+}
+
+</script>
+<div id="ending" style="display:none;text-align:center;">
+
+    <h1>❤️</h1>
+
+    <h2>Happy Birthday My Leaa</h2>
+
+    <br>
+
+    <p>
+        Terima kasih sudah meluangkan waktu kamu untuk lihat semua ini.
+        Semoga kue ulang tahunmu semanis dirimu <3
+
+        <br><br>
+
+        Semoga semua hal baik selalu bersamamu.
+        Dan Semua impian mu bisa tercapai, Aminn.
+
+        <br><br>
+
+        I Love U My Leaa. ❤️
+    </p>
+
+    <br>
+
+    <h3>- Ur Jayy ✨</h3>
+
+    <br>
+
+    <button onclick="location.reload()">
+        💌 Baca Lagi Dari Awal
+    </button>
+
+</div>
+<div id="heartTransition">
+
+    ❤️
+
+</div>
+</body>
+</html>
